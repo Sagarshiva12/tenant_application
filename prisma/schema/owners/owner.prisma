@@ -1,0 +1,19 @@
+enum OwnerStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+model Owner {
+  id        String      @id @default(cuid())
+  name      String
+  email     String      @unique
+  phone     String?
+  address   String?
+  status    OwnerStatus @default(ACTIVE)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([name])
+  @@index([status])
+}
